@@ -1,0 +1,206 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+html {
+  font-size: 62.5%;
+}
+.content {
+  margin: auto;
+}
+h1 {
+  font-size: 22px;
+}
+.form {
+  width: 320px;
+  height: 320px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.form-toggle {
+  appearance: none;
+  margin-bottom: auto;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid darkslateblue;
+}
+.form-toggle::after,
+.form-toggle::before {
+  position: absolute;
+  content: "Login";
+  display: grid;
+  place-content: center;
+  color: white;
+  background-color: darkslateblue;
+  width: 50%;
+  height: 100%;
+  transition: all 0.3s ease;
+  font-size: 17px;
+}
+.form-toggle::before {
+  content: "Register";
+  right: 0;
+  background-color: white;
+  color: darkslateblue;
+}
+.form-toggle:checked::after {
+  background-color: white;
+  color: darkslateblue;
+}
+.form-toggle:checked::before {
+  background-color: darkslateblue;
+  color: white;
+}
+.form-inner {
+  height: 310px;
+  margin-top: auto;
+  position: relative;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+.login-form,
+.register-form {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.register-form {
+  transform: rotateY(180deg);
+}
+.username,
+.password,
+.email {
+  width: 100%;
+  height: 30px;
+  position: relative;
+}
+.username-expander,
+.password-expander,
+.email-expander {
+  position: absolute;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  height: 100%;
+  width: 100px;
+  background-color: lightskyblue;
+  border-radius: 4px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+.username-expander::after,
+.password-expander::after,
+.email-expander::after {
+  inset: 0;
+  position: absolute;
+  content: "Username";
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease;
+  font-size: 17px;
+}
+.password-expander::after {
+  content: "Password";
+}
+.email-expander::after {
+  content: "Email";
+}
+.username-expander::before,
+.password-expander::before,
+.email-expander::before {
+  position: absolute;
+  inset: 0;
+  content: "\f007";
+  font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+  display: grid;
+  place-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-size: 17px;
+}
+.password-expander::before {
+  content: "\f084";
+}
+.email-expander::before {
+  content: "\f0e0";
+}
+.username-expander:checked,
+.password-expander:checked,
+.email-expander:checked {
+  left: 0;
+  transform: translate(0, -50%);
+  width: 10%;
+  border-radius: 4px 0 0 4px;
+}
+.username-expander:checked::after,
+.password-expander:checked::after,
+.email-expander:checked::after {
+  opacity: 0;
+}
+.username-expander:checked::before,
+.password-expander:checked::before,
+.email-expander:checked::before {
+  opacity: 1;
+}
+.username-expander:checked + #username,
+.password-expander:checked + #password,
+.email-expander:checked + #email {
+  width: 90%;
+  padding: 0 5px;
+  pointer-events: auto;
+  border-color: #cecece;
+}
+#username,
+#password,
+#email {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+  width: 0;
+  pointer-events: none;
+  border-radius: 0 4px 4px 0;
+}
+.button {
+  font: inherit;
+  font-size: 12px;
+  border: none;
+  padding: 4px 15px;
+  background-color: darkslateblue;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.form-toggle:checked + .form-inner {
+  transform: rotateY(-180deg);
+}
